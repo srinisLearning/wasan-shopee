@@ -1,0 +1,84 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+
+const stripeHeaders = (key) => ({
+  "Authorization": `Bearer ${key}`,
+  "Content-Type": "application/x-www-form-urlencoded",
+});
+
+const corsHeaders = () => ({
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+});
+
+const jsonHeaders = () => ({
+  ...corsHeaders(),
+  "Content-Type": "application/json",
+});
+
+serve(async (req) => {
+  // Handle CORS Preflight
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders() });
+  }
+
+  try {
+    const { amount } = await req.json();
+    const key = Deno.env.get("STRIPE_SECRET_KEY");
+
+    // 1. Customer
+    const customer = await (await fetch("https://api.stripe.com/v1/customers", {
+      method: "POST",
+      headers: stripeHeaders(key),
+      body: new URLSearchParams({
+        name: "Test User", // Consider passing this from req.json()
+        email: "test@example.com",
+        "address[line1]": "123 Test St",
+        "address[country]": "US",
+        "address[postal_code]": "10001",
+      }),
+    })).json();
+
+    // 2. Ephemeral Key
+    const ephemeralKey = await (await fetch(
+      "https://api.stripe.com/v1/ephemeral_keys",
+      {
+        method: "POST",
+        headers: {
+          ...stripeHeaders(key),
+          "Stripe-Version": "2024-06-20",
+        },
+        body: new URLSearchParams({ customer: customer.id }),
+      }
+    )).json();
+
+    // 3. Payment Intent
+    const pi = await (await fetch("https://api.stripe.com/v1/payment_intents", {
+      method: "POST",
+      headers: stripeHeaders(key),
+      body: new URLSearchParams({
+        amount: String(Math.round(amount * 100)),
+        currency: "usd",
+        customer: customer.id,
+        "automatic_payment_methods[enabled]": "true",
+        description: "Sheyshop AI Payment"
+      }),
+    })).json();
+
+    // 4. Return to the client
+    return new Response(
+      JSON.stringify({
+        clientSecret: pi.client_secret,
+        customer: customer.id,
+        ephemeralKey: ephemeralKey.secret,
+        paymentIntentId: pi.id,
+      }),
+      { headers: jsonHeaders() }
+    );
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 400,
+      headers: jsonHeaders(),
+    });
+  }
+});
