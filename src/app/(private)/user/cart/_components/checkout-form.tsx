@@ -77,7 +77,7 @@ const CheckoutForm = ({
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           <PaymentElement />
-          <AddressElement options={{ mode: "shipping", allowedCountries: ["US"] }} />
+          <AddressElement options={{ mode: "shipping", allowedCountries: ["IN", "US"] }} />
           <div className="flex mt-6 justify-end gap-3">
             <Button
               type="button"

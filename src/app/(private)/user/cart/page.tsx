@@ -125,7 +125,7 @@ const CartPage = () => {
                     </p>
                   </div>
                   <span className="font-bold text-xl text-primary whitespace-nowrap">
-                    ${item.price}
+                    ₹{item.price}
                   </span>
                 </div>
 
@@ -183,14 +183,14 @@ const CartPage = () => {
                   Subtotal ({cartItems.reduce((acc, i) => acc + i.quantity, 0)}{" "}
                   items)
                 </span>
-                <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                <span className="font-semibold">₹{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between items-center text-[15px]">
                 <span className="text-muted-foreground">
                   Estimated Shipping
                 </span>
                 <span className="font-semibold">
-                  {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                  {shipping === 0 ? "Free" : `₹${shipping.toFixed(2)}`}
                 </span>
               </div>
 
@@ -198,7 +198,7 @@ const CartPage = () => {
 
               <div className="flex justify-between items-center text-xl font-bold">
                 <span>Total</span>
-                <span className="text-primary">${total.toFixed(2)}</span>
+                <span className="text-primary">₹{total.toFixed(2)}</span>
               </div>
             </CardContent>
             <CardFooter className="pb-6 flex flex-col gap-4">

@@ -57,7 +57,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </DialogTrigger>
         <CardFooter className="flex justify-between items-center w-full min-h-[4rem]">
-          <div className="font-semibold text-lg text-primary">${product.price}</div>
+          <div className="font-semibold text-lg text-primary">₹{product.price}</div>
           {cartItem ? (
             <div className="flex items-center gap-2">
               <Button size="icon" variant="outline" className="h-8 w-8 rounded-full" onClick={handleMinus}>
@@ -77,7 +77,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <DialogHeader>
           <DialogTitle className="text-2xl">{product.name}</DialogTitle>
           <DialogDescription className="text-xl font-semibold text-primary">
-            ${product.price}
+            ₹{product.price}
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-6 py-4">

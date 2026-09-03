@@ -52,7 +52,7 @@ async function testPaymentIntent(amount) {
       headers: stripeHeaders(STRIPE_SECRET_KEY),
       body: new URLSearchParams({
         amount: String(Math.round(amount * 100)),
-        currency: "usd",
+        currency: "inr",
         customer: customer.id,
         "automatic_payment_methods[enabled]": "true",
         description: "Sheyshop AI Payment"

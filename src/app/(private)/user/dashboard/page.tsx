@@ -238,7 +238,7 @@ const UserDashboardPage = () => {
         {/* 2. Total Amount Spent */}
         <DashboardCard
           title="Total Amount Spent"
-          value={`$${stats.totalSpent.toFixed(2)}`}
+          value={`₹${stats.totalSpent.toFixed(2)}`}
           icon="🛍️"
           color="bg-green-100 text-green-600 dark:bg-emerald-950/50 dark:text-emerald-400"
           description="Lifetime money spent on completed orders"
@@ -354,7 +354,7 @@ const UserDashboardPage = () => {
                         Total
                       </span>
                       <span className="font-bold text-sm font-mono text-foreground">
-                        ${Number(order.total || 0).toFixed(2)}
+                        ₹{Number(order.total || 0).toFixed(2)}
                       </span>
                     </div>
 

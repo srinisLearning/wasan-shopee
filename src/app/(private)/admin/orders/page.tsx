@@ -410,7 +410,7 @@ const AdminOrdersPage = () => {
                   Quantity
                 </TableHead>
                 <TableHead className="w-[110px] font-bold text-xs uppercase tracking-wider text-muted-foreground">
-                  Price
+                  Price (₹)
                 </TableHead>
                 <TableHead className="font-bold text-xs uppercase tracking-wider text-muted-foreground min-w-[160px]">
                   Customer Name
@@ -517,7 +517,7 @@ const AdminOrdersPage = () => {
                             className="h-12 flex items-center"
                           >
                             <span className="text-sm font-mono font-semibold text-foreground">
-                              ${Number(item.price || 0).toFixed(2)}
+                              ₹{Number(item.price || 0).toFixed(2)}
                             </span>
                           </div>
                         ))}
@@ -525,7 +525,7 @@ const AdminOrdersPage = () => {
                           <div className="pt-1 text-xs text-muted-foreground border-t border-border/30">
                             Total:{" "}
                             <span className="font-bold text-foreground font-mono">
-                              ${Number(order.total || 0).toFixed(2)}
+                              ₹{Number(order.total || 0).toFixed(2)}
                             </span>
                           </div>
                         )}

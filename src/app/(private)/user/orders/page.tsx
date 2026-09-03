@@ -333,7 +333,7 @@ const UserOrdersPage = () => {
                     <div className="text-right">
                       <span className="text-xs text-muted-foreground block">Total Amount</span>
                       <span className="text-lg font-bold text-primary">
-                        ${order.total?.toFixed(2) || "0.00"}
+                        ₹{order.total?.toFixed(2) || "0.00"}
                       </span>
                     </div>
                   </div>
@@ -371,14 +371,14 @@ const UserOrdersPage = () => {
                           </span>
                           <span>•</span>
                           <span>
-                            Price: <strong className="text-foreground">${item.price?.toFixed(2)}</strong>
+                            Price: <strong className="text-foreground">₹{item.price?.toFixed(2)}</strong>
                           </span>
                         </div>
                       </div>
 
                       <div className="text-right">
                         <span className="font-bold text-sm sm:text-base text-foreground">
-                          ${((item.price || 0) * (item.quantity || 1)).toFixed(2)}
+                          ₹{((item.price || 0) * (item.quantity || 1)).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -516,11 +516,11 @@ const UserOrdersPage = () => {
                           {item.name}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          ${item.price?.toFixed(2)} × {item.quantity || 1}
+                          ₹{item.price?.toFixed(2)} × {item.quantity || 1}
                         </p>
                       </div>
                       <span className="font-semibold text-sm">
-                        ${((item.price || 0) * (item.quantity || 1)).toFixed(2)}
+                        ₹{((item.price || 0) * (item.quantity || 1)).toFixed(2)}
                       </span>
                     </div>
                   ))}
@@ -589,7 +589,7 @@ const UserOrdersPage = () => {
                 <div className="flex justify-between text-muted-foreground text-xs">
                   <span>Subtotal</span>
                   <span className="font-medium text-foreground">
-                    ${selectedOrder.subtotal?.toFixed(2) || "0.00"}
+                    ₹{selectedOrder.subtotal?.toFixed(2) || "0.00"}
                   </span>
                 </div>
                 <div className="flex justify-between text-muted-foreground text-xs">
@@ -597,19 +597,19 @@ const UserOrdersPage = () => {
                   <span className="font-medium text-foreground">
                     {selectedOrder.shipping_fee === 0 || !selectedOrder.shipping_fee
                       ? "Free"
-                      : `$${selectedOrder.shipping_fee.toFixed(2)}`}
+                      : `₹${selectedOrder.shipping_fee.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-muted-foreground text-xs">
                   <span>Estimated Tax</span>
                   <span className="font-medium text-foreground">
-                    ${selectedOrder.tax?.toFixed(2) || "0.00"}
+                    ₹{selectedOrder.tax?.toFixed(2) || "0.00"}
                   </span>
                 </div>
                 <div className="h-px bg-border my-2" />
                 <div className="flex justify-between font-bold text-base text-foreground">
                   <span>Total Paid</span>
-                  <span className="text-primary">${selectedOrder.total?.toFixed(2) || "0.00"}</span>
+                  <span className="text-primary">₹{selectedOrder.total?.toFixed(2) || "0.00"}</span>
                 </div>
               </div>
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   ShoppingBag,
   Package,
-  DollarSign,
+  IndianRupee,
   XCircle,
   Clock,
   Truck,
@@ -274,8 +274,8 @@ const AdminDashboardPage = () => {
           {/* Total Amount */}
           <DashboardCard
             title="Total Amount"
-            value={`$${ordersReport.totalAmount.toFixed(2)}`}
-            icon={<DollarSign className="w-5 h-5" />}
+            value={`₹${ordersReport.totalAmount.toFixed(2)}`}
+            icon={<IndianRupee className="w-5 h-5" />}
             color="bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400"
             description="Revenue from completed/active orders"
             href="/admin/orders"
@@ -436,7 +436,7 @@ const AdminDashboardPage = () => {
                             Total
                           </p>
                           <p className="text-sm font-bold font-mono text-foreground">
-                            ${Number(order.total || 0).toFixed(2)}
+                            ₹{Number(order.total || 0).toFixed(2)}
                           </p>
                         </div>
                         <Link href="/admin/orders">

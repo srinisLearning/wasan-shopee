@@ -202,9 +202,9 @@ const ProductForm = ({ open, setOpen, initialData, onSuccess }: ProductFormProps
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price</FormLabel>
+                    <FormLabel>Price (₹)</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="Enter product price" {...field} />
+                      <Input type="number" placeholder="Enter product price (₹)" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -79,7 +79,7 @@ const PublicHeader = () => {
                 <Truck className="w-5 h-5 text-emerald-400 shrink-0" />
                 <div className="text-xs">
                   <p className="font-semibold text-white">Free Express</p>
-                  <p className="text-white/70">On orders $49+</p>
+                  <p className="text-white/70">On orders ₹499+</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5">

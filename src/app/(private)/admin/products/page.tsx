@@ -100,7 +100,7 @@ const AdminProductsPage = () => {
                 <TableHead className="font-bold text-slate-900">Name</TableHead>
                 <TableHead className="font-bold text-slate-900">Category</TableHead>
                 <TableHead className="font-bold text-slate-900">Description</TableHead>
-                <TableHead className="font-bold text-slate-900">Price</TableHead>
+                <TableHead className="font-bold text-slate-900">Price (₹)</TableHead>
                 <TableHead className="text-right font-bold text-slate-900">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -144,7 +144,7 @@ const AdminProductsPage = () => {
                     <TableCell className="max-w-[200px] truncate">
                       {product.description}
                     </TableCell>
-                    <TableCell>${product.price}</TableCell>
+                    <TableCell>₹{product.price}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button
