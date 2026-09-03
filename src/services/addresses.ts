@@ -141,3 +141,15 @@ export const setDefaultAddress = async (id: string, userId: string) => {
     throw err instanceof Error ? err : new Error("Failed to set default address.");
   }
 };
+
+export const getAllAddresses = async () => {
+  try {
+    const supabase = supabaseConfig();
+    const { data, error } = await supabase.from("shop_addresses").select("*");
+    if (error) throw new Error(error.message);
+    return data as IAddress[];
+  } catch (err) {
+    return [] as IAddress[];
+  }
+};
+

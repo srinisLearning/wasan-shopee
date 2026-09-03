@@ -28,6 +28,7 @@ the login page should have links to register at the bottom and home at the top
 
 
 
+
 @user.ts now integrate the regiserNewUser service,disable the button when it is processing,afer success or failure show toast message using shadcn sonner and navigate to login page after sucessfull registration
 
 Now lets us completer the login process. Validate the credentials username password and role  and return db user record if success 
@@ -114,3 +115,26 @@ getOrderById
 getAllOrders
 updateOrderById
 deleteOrder
+
+@cartpage @checkoutform complete the handleSuccess in @checkout-btn to create an order,if it is success navigate to user/orders and build that page as well
+
+now build the user dashboard
+i need total orders placed
+total items spent
+total items purchased
+cancelled orders
+delivered orders
+processing orders
+make dashboard-card as a seperate component and use it in the user dashboard page.  
+
+
+ADMIN
+
+@orders.ts fetch and show orders of all customers. it has to be in a table, with product image  in a small size, product name,quantity,price,customer name,order date,order status,action button.
+action button has to open a modal to update the order status. 
+order status can be processing,shipped,cancelled,delivered
+
+now lets complete dashboard . I need orders report .(ttoal orders,total amout,cancelled orders,Yet to deliver
+Shop Report(Total users, Total  Products,Total Categories, 
+
+we just need the count of users, products, categories.so don't fetch the complete table data just count is enough, pls optimise 

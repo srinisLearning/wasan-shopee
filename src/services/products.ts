@@ -177,3 +177,18 @@ export const getFeaturedProducts = async () => {
   }
 };
 
+export const getProductsCount = async () => {
+  try {
+    const supabase = supabaseConfig();
+    const { count, error } = await supabase
+      .from("shop_products")
+      .select("*", { count: "exact", head: true });
+
+    if (error) throw new Error(error.message);
+    return { success: true, count: count ?? 0 };
+  } catch (err: any) {
+    return { success: false, message: err.message, count: 0 };
+  }
+};
+
+

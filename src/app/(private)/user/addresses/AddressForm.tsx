@@ -62,7 +62,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
     }
 
     // Force is_default to a strict boolean value
-    const isDefault = data.is_default === true || data.is_default === "true" || data.is_default === "on";
+    const isDefault = data.is_default === true || (data.is_default as any) === "true" || (data.is_default as any) === "on";
     const payload = { ...data, is_default: isDefault };
 
     try {

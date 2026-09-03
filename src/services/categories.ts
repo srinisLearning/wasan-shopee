@@ -97,3 +97,18 @@ export const deleteCategory = async (id: string) => {
     throw err instanceof Error ? err : new Error("Failed to delete category.");
   }
 };
+
+export const getCategoriesCount = async () => {
+  try {
+    const supabase = supabaseConfig();
+    const { count, error } = await supabase
+      .from("shop_categories")
+      .select("*", { count: "exact", head: true });
+
+    if (error) throw new Error(error.message);
+    return { success: true, count: count ?? 0 };
+  } catch (err: any) {
+    return { success: false, message: err.message, count: 0 };
+  }
+};
+

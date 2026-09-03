@@ -33,7 +33,7 @@ export const getOrdersOfUser = async (userId: string) => {
   }
 };
 
-export const getOrderById = async (id: string) => {
+export const getOrderById = async (id: string | number) => {
   try {
     const supabase = supabaseConfig();
     const { data, error } = await supabase
@@ -64,7 +64,10 @@ export const getAllOrders = async () => {
   }
 };
 
-export const updateOrderById = async (id: string, payload: Partial<IOrder>) => {
+export const updateOrderById = async (
+  id: string | number,
+  payload: Partial<IOrder>,
+) => {
   try {
     const supabase = supabaseConfig();
     const { data, error } = await supabase
@@ -81,7 +84,7 @@ export const updateOrderById = async (id: string, payload: Partial<IOrder>) => {
   }
 };
 
-export const deleteOrder = async (id: string) => {
+export const deleteOrder = async (id: string | number) => {
   try {
     const supabase = supabaseConfig();
     const { error } = await supabase.from("shop_orders").delete().eq("id", id);

@@ -47,7 +47,7 @@ export interface IAddress {
 }
 
 export interface IOrder {
-  id: string;
+  id: string | number;
   created_at: string;
   user_id?: string;
   subtotal?: number;

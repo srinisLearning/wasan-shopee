@@ -37,6 +37,11 @@ const MenuItems = ({ onItemClick }: MenuItemsProps) => {
 
   const userMenuItems: IMenuItem[] = [
     {
+      name: "Profile",
+      icon: User,
+      href: "/user/profile",
+    },
+    {
       name: "Dashboard",
       icon: Home,
       href: "/user/dashboard",
@@ -47,7 +52,7 @@ const MenuItems = ({ onItemClick }: MenuItemsProps) => {
       href: "/user/products",
     },
     {
-      name: "Addresses",
+      name: "Shipping Addresses",
       icon: MapPin,
       href: "/user/addresses",
     },
@@ -56,11 +61,7 @@ const MenuItems = ({ onItemClick }: MenuItemsProps) => {
       icon: ListCheck,
       href: "/user/orders",
     },
-    {
-      name: "Profile",
-      icon: User,
-      href: "/user/profile",
-    },
+
     {
       name: "Settings",
       icon: Settings,

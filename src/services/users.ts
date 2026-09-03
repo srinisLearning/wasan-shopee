@@ -136,27 +136,82 @@ export const logoutUser = async () => {
   }
 };
 
-/* export const getCurrentUserV2 = async () => {
+export const updateUserPassword = async (
+  newPassword: string,
+  currentPassword?: string,
+  email?: string
+) => {
   try {
     const supabase = supabaseConfig();
-    const { data: authUser, error: authError } = await supabase.auth.getUser();
 
-    if (authError || !authUser) {
-      throw new Error("No user is currently logged in.");
+    if (currentPassword && email) {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password: currentPassword,
+      });
+      if (signInError) {
+        throw new Error("Current password is incorrect.");
+      }
     }
 
-    const { data: dbUser, error: dbError } = await supabase
-      .from("user_profiles")
+    const { data, error } = await supabase.auth.updateUser({
+      password: newPassword,
+    });
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return { success: true, message: "Password updated successfully." };
+  } catch (err) {
+    throw err instanceof Error ? err : new Error("Failed to update password.");
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const supabase = supabaseConfig();
+    const { data, error } = await supabase
+      .from("shop_users")
       .select("*")
-      .eq("email", authUser.user.email)
+      .order("created_at", { ascending: false });
+
+    if (error) throw new Error(error.message);
+    return { success: true, data: (data || []) as IUser[] };
+  } catch (err: any) {
+    return { success: false, message: err.message, data: [] as IUser[] };
+  }
+};
+
+export const getUsersCount = async () => {
+  try {
+    const supabase = supabaseConfig();
+    const { count, error } = await supabase
+      .from("shop_users")
+      .select("*", { count: "exact", head: true });
+
+    if (error) throw new Error(error.message);
+    return { success: true, count: count ?? 0 };
+  } catch (err: any) {
+    return { success: false, message: err.message, count: 0 };
+  }
+};
+
+export const updateUserById = async (id: string, payload: Partial<IUser>) => {
+  try {
+    const supabase = supabaseConfig();
+    const { data, error } = await supabase
+      .from("shop_users")
+      .update(payload)
+      .eq("id", id)
+      .select()
       .single();
 
-    if (dbError || !dbUser) {
-      throw new Error(dbError?.message || "User profile not found.");
+    if (error) {
+      throw new Error(error.message);
     }
-
-    return dbUser;
-  } catch (error) {
-    throw error;
+    return { success: true, data: data as IUser, message: "User updated successfully." };
+  } catch (err: any) {
+    return { success: false, message: err.message };
   }
-}; */
+};
